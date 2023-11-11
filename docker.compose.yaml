@@ -1,5 +1,10 @@
-FROM node:19-slim
+version: "3"
 
-WORKDIR /home/node/app
+services:
+  app-course:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app-course
 
-CMD ["tail", "-f", "/dev/null"]
