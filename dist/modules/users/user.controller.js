@@ -14,44 +14,25 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
-const crypto_1 = require("crypto");
+const create_user_usercase_1 = require("./useCases/create-user.usercase");
 let UserController = class UserController {
-    findById(params) {
-        return 'Usuário do ID ' + params.id + ' - Empresa ID: ' + params.idEmpresa;
+    constructor(createUserUseCase) {
+        this.createUserUseCase = createUserUseCase;
     }
-    findByPages(queries) {
-        return 'Queries ' + queries.r;
-    }
-    create(data) {
-        return {
-            ...data,
-            id: (0, crypto_1.randomUUID)(),
-        };
+    async create(data) {
+        return await this.createUserUseCase.execute(data);
     }
 };
 exports.UserController = UserController;
 __decorate([
-    (0, common_1.Get)('/:id/:idEmpresa'),
-    __param(0, (0, common_1.Param)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], UserController.prototype, "findById", null);
-__decorate([
-    (0, common_1.Get)('/findByPages'),
-    __param(0, (0, common_1.Query)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], UserController.prototype, "findByPages", null);
-__decorate([
-    (0, common_1.Post)('/create'),
+    (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
 exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)('/users')
+    (0, common_1.Controller)("/users"),
+    __metadata("design:paramtypes", [create_user_usercase_1.CreateUserUseCase])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map
