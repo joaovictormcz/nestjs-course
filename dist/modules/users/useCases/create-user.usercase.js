@@ -11,28 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserUseCase = void 0;
 const common_1 = require("@nestjs/common");
-const prisma_service_1 = require("../../../infra/prisma.service");
+const bcrypt_1 = require("bcrypt");
+const user_repository_1 = require("../repositories/user.repository");
 let CreateUserUseCase = class CreateUserUseCase {
-    constructor(prisma) {
-        this.prisma = prisma;
+    constructor(userRepository) {
+        this.userRepository = userRepository;
     }
     async execute(data) {
-        const user = await this.prisma.users.findFirst({
-            where: {
-                OR: [{ username: data.username }, { email: data.email }],
-            },
+        const user = await this.userRepository.findByUsernameOrEmail({
+            username: data.username,
+            email: data.email,
         });
         if (user) {
             throw new common_1.HttpException("User already exists!", common_1.HttpStatus.BAD_REQUEST);
         }
-        return await this.prisma.users.create({
-            data,
+        const password = await (0, bcrypt_1.hash)(data.password, 10);
+        return await this.userRepository.save({
+            ...data,
+            password,
         });
     }
 };
 exports.CreateUserUseCase = CreateUserUseCase;
 exports.CreateUserUseCase = CreateUserUseCase = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+    __metadata("design:paramtypes", [user_repository_1.IUserRepository])
 ], CreateUserUseCase);
 //# sourceMappingURL=create-user.usercase.js.map

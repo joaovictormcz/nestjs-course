@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const create_user_usercase_1 = require("./useCases/create-user.usercase");
+const create_user_validation_pipe_1 = require("./pipes/create-user.validation.pipe");
 let UserController = class UserController {
     constructor(createUserUseCase) {
         this.createUserUseCase = createUserUseCase;
@@ -26,6 +27,7 @@ let UserController = class UserController {
 exports.UserController = UserController;
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UsePipes)(new create_user_validation_pipe_1.CreateUserValidationPipe),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
