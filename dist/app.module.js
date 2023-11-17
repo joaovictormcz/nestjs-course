@@ -9,14 +9,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const user_module_1 = require("./modules/users/user.module");
+const login_module_1 = require("./modules/login/login.module");
+const core_1 = require("@nestjs/core");
+const nestjs_zod_1 = require("nestjs-zod");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_module_1.UserModule],
+        imports: [user_module_1.UserModule, login_module_1.LoginModule],
         controllers: [],
-        providers: [],
+        providers: [{
+                provide: core_1.APP_PIPE,
+                useClass: nestjs_zod_1.ZodValidationPipe,
+            }],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

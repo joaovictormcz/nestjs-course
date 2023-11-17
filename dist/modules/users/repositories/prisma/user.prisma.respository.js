@@ -16,15 +16,22 @@ let UserPrismaRepository = class UserPrismaRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
+    async findById(id) {
+        return this.prisma.user.findUnique({
+            where: {
+                id,
+            },
+        });
+    }
     async findByUsernameOrEmail(data) {
-        return await this.prisma.users.findFirst({
+        return await this.prisma.user.findFirst({
             where: {
                 OR: [{ username: data.username }, { email: data.email }],
             },
         });
     }
     async save(data) {
-        return await this.prisma.users.create({
+        return await this.prisma.user.create({
             data,
         });
     }

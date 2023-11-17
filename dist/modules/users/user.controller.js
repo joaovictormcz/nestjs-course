@@ -15,26 +15,42 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const create_user_usercase_1 = require("./useCases/create-user.usercase");
-const create_user_validation_pipe_1 = require("./pipes/create-user.validation.pipe");
+const auth_guard_provider_1 = require("../../infra/providers/auth-guard.provider");
+const profile_user_usercase_1 = require("./useCases/profile-user.usercase");
+const create_user_schema_1 = require("./schemas/create-user.schema");
 let UserController = class UserController {
-    constructor(createUserUseCase) {
+    constructor(createUserUseCase, profileUserUseCase) {
         this.createUserUseCase = createUserUseCase;
+        this.profileUserUseCase = profileUserUseCase;
     }
     async create(data) {
-        return await this.createUserUseCase.execute(data);
+        const user = await this.createUserUseCase.execute(data);
+        return create_user_schema_1.CreateUserResponseSchemaDTO.parse(user);
+    }
+    async profile(req) {
+        console.log(req.user.sub);
+        return this.profileUserUseCase.execute(req.user.sub);
     }
 };
 exports.UserController = UserController;
 __decorate([
     (0, common_1.Post)(),
-    (0, common_1.UsePipes)(new create_user_validation_pipe_1.CreateUserValidationPipe),
     __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_user_schema_1.CreateUserSchemaDTO]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)("/profile"),
+    (0, common_1.UseGuards)(auth_guard_provider_1.AuthGuard),
+    __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "create", null);
+], UserController.prototype, "profile", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)("/users"),
-    __metadata("design:paramtypes", [create_user_usercase_1.CreateUserUseCase])
+    __metadata("design:paramtypes", [create_user_usercase_1.CreateUserUseCase,
+        profile_user_usercase_1.ProfileUserUseCase])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

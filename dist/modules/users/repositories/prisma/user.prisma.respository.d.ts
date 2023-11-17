@@ -4,6 +4,7 @@ import { IUserRepository } from "../user.repository";
 export declare class UserPrismaRepository implements IUserRepository {
     private prisma;
     constructor(prisma: PrismaService);
-    findByUsernameOrEmail(data: UsernameAndEmail): Promise<UserCreatedDTO>;
+    findById(id: string): Promise<UserCreatedDTO | null>;
+    findByUsernameOrEmail(data: UsernameAndEmail): Promise<UserCreatedDTO | null>;
     save(data: CreateUserDTO): Promise<UserCreatedDTO>;
 }

@@ -1,7 +1,14 @@
 import { CreateUserUseCase } from "./useCases/create-user.usercase";
-import { CreateUserDTO } from "./dto/user.dto";
+import { ProfileUserUseCase } from "./useCases/profile-user.usercase";
+import { CreateUserSchemaDTO } from "./schemas/create-user.schema";
 export declare class UserController {
     private readonly createUserUseCase;
-    constructor(createUserUseCase: CreateUserUseCase);
-    create(data: CreateUserDTO): Promise<import("./dto/user.dto").UserCreatedDTO>;
+    private readonly profileUserUseCase;
+    constructor(createUserUseCase: CreateUserUseCase, profileUserUseCase: ProfileUserUseCase);
+    create(data: CreateUserSchemaDTO): Promise<{
+        name: string;
+        email: string;
+        username: string;
+    }>;
+    profile(req: any): Promise<import("./dto/user.dto").UserCreatedDTO | null>;
 }
