@@ -8,14 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var CreateUserUseCase_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserUseCase = void 0;
 const common_1 = require("@nestjs/common");
 const bcrypt_1 = require("bcrypt");
 const user_repository_1 = require("../repositories/user.repository");
-let CreateUserUseCase = class CreateUserUseCase {
+let CreateUserUseCase = CreateUserUseCase_1 = class CreateUserUseCase {
     constructor(userRepository) {
         this.userRepository = userRepository;
+        this.logger = new common_1.Logger(CreateUserUseCase_1.name);
     }
     async execute(data) {
         const user = await this.userRepository.findByUsernameOrEmail({
@@ -23,6 +25,7 @@ let CreateUserUseCase = class CreateUserUseCase {
             email: data.email,
         });
         if (user) {
+            this.logger.error('User ${data.username} already exists...', data);
             throw new common_1.HttpException("User already exists!", common_1.HttpStatus.BAD_REQUEST);
         }
         const password = await (0, bcrypt_1.hash)(data.password, 10);
@@ -33,7 +36,7 @@ let CreateUserUseCase = class CreateUserUseCase {
     }
 };
 exports.CreateUserUseCase = CreateUserUseCase;
-exports.CreateUserUseCase = CreateUserUseCase = __decorate([
+exports.CreateUserUseCase = CreateUserUseCase = CreateUserUseCase_1 = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [user_repository_1.IUserRepository])
 ], CreateUserUseCase);

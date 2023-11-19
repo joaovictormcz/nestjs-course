@@ -5,9 +5,13 @@ import { PrismaService } from "src/infra/prisma.service";
 import { UserPrismaRepository } from "./repositories/prisma/user.prisma.respository";
 import { IUserRepository } from "./repositories/user.repository";
 import { ProfileUserUseCase } from "./useCases/profile-user.usercase";
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
-  imports: [],
+  imports: [MulterModule.register({
+    dest: './uploads',
+    preservePath: true
+  }),],
   controllers: [UserController],
   providers: [
     CreateUserUseCase,

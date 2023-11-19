@@ -32,7 +32,8 @@
 				"Prisma.prisma-insider",
 				"ms-azuretools.vscode-docker",
 				"esbenp.prettier-vscode",
-				"TabNine.tabnine-vscode"
+				"TabNine.tabnine-vscode",
+				"ms-vscode-remote.vscode-remote-extensionpack"
 			]
 		}
 	}

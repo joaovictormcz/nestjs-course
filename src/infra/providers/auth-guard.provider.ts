@@ -24,6 +24,7 @@ export class AuthGuard implements CanActivate {
         secret: "NESTJS_CURSO",
       });
       request['user'] = payload;
+      
     } catch {
       throw new UnauthorizedException();
     }

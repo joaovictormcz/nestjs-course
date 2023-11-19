@@ -18,6 +18,7 @@ const create_user_usercase_1 = require("./useCases/create-user.usercase");
 const auth_guard_provider_1 = require("../../infra/providers/auth-guard.provider");
 const profile_user_usercase_1 = require("./useCases/profile-user.usercase");
 const create_user_schema_1 = require("./schemas/create-user.schema");
+const platform_express_1 = require("@nestjs/platform-express");
 let UserController = class UserController {
     constructor(createUserUseCase, profileUserUseCase) {
         this.createUserUseCase = createUserUseCase;
@@ -28,8 +29,10 @@ let UserController = class UserController {
         return create_user_schema_1.CreateUserResponseSchemaDTO.parse(user);
     }
     async profile(req) {
-        console.log(req.user.sub);
         return this.profileUserUseCase.execute(req.user.sub);
+    }
+    async uploadAvatar(req, file) {
+        console.log(file);
     }
 };
 exports.UserController = UserController;
@@ -41,15 +44,25 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)("/profile"),
+    (0, common_1.Get)('/profile'),
     (0, common_1.UseGuards)(auth_guard_provider_1.AuthGuard),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "profile", null);
+__decorate([
+    (0, common_1.Post)('/avatar'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
+    (0, common_1.UseGuards)(auth_guard_provider_1.AuthGuard),
+    __param(0, (0, common_1.Request)()),
+    __param(1, (0, common_1.UploadedFile)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "uploadAvatar", null);
 exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)("/users"),
+    (0, common_1.Controller)('/users'),
     __metadata("design:paramtypes", [create_user_usercase_1.CreateUserUseCase,
         profile_user_usercase_1.ProfileUserUseCase])
 ], UserController);

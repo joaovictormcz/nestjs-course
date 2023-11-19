@@ -1,6 +1,7 @@
 import { CreateUserUseCase } from "./useCases/create-user.usercase";
 import { ProfileUserUseCase } from "./useCases/profile-user.usercase";
 import { CreateUserSchemaDTO } from "./schemas/create-user.schema";
+import { FileDTO } from "./dto/user.dto";
 export declare class UserController {
     private readonly createUserUseCase;
     private readonly profileUserUseCase;
@@ -11,4 +12,5 @@ export declare class UserController {
         username: string;
     }>;
     profile(req: any): Promise<import("./dto/user.dto").UserCreatedDTO | null>;
+    uploadAvatar(req: any, file: FileDTO): Promise<void>;
 }

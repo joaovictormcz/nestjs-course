@@ -9,4 +9,4 @@ export type TaskUserRequestDTO = {
 };
 export type TaskUserResponseDTO = {
     id: string;
-} & TaskUserRequestDTO;
+};

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { TaskUserRequestDTO } from "./dto/task-user.dto";
-import { ITaskUserRepository } from "./repositories/task-user.repository";
+import { TaskUserRequestDTO } from "../dto/task-user.dto";
+import { ITaskUserRepository } from "../repositories/task-user.repository";
 
 @Injectable()
 export class CreateTaskUserUseCase {

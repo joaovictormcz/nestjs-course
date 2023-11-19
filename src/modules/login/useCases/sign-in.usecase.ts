@@ -34,7 +34,7 @@ export class SignInUseCase {
     }
 
     const payload = {
-      sub: user.username,
+      sub: user.id,
       username: user.username,
     };
 

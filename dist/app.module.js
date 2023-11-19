@@ -12,12 +12,13 @@ const user_module_1 = require("./modules/users/user.module");
 const login_module_1 = require("./modules/login/login.module");
 const core_1 = require("@nestjs/core");
 const nestjs_zod_1 = require("nestjs-zod");
+const task_user_module_1 = require("./modules/tasks/task-user.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_module_1.UserModule, login_module_1.LoginModule],
+        imports: [user_module_1.UserModule, login_module_1.LoginModule, task_user_module_1.TaskUserModule],
         controllers: [],
         providers: [{
                 provide: core_1.APP_PIPE,

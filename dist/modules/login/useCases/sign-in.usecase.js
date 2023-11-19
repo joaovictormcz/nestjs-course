@@ -33,7 +33,7 @@ let SignInUseCase = class SignInUseCase {
             throw new common_1.UnauthorizedException();
         }
         const payload = {
-            sub: user.username,
+            sub: user.id,
             username: user.username,
         };
         const token = await this.jwtService.signAsync(payload);

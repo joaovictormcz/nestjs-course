@@ -9,41 +9,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserPrismaRepository = void 0;
+exports.TaskUserPrismaRepository = void 0;
 const prisma_service_1 = require("../../../../infra/prisma.service");
 const common_1 = require("@nestjs/common");
-let UserPrismaRepository = class UserPrismaRepository {
+let TaskUserPrismaRepository = class TaskUserPrismaRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    findByUsername(username) {
-        return this.prisma.user.findFirst({
-            where: { username },
-        });
-    }
-    async findById(id) {
-        return this.prisma.user.findUnique({
-            where: {
-                id,
+    save(data) {
+        return this.prisma.taskUser.create({
+            data: {
+                task: {
+                    create: {
+                        description: data.description,
+                        endAt: data.endAt,
+                        priority: data.priority,
+                        startAt: data.startAt,
+                        title: data.title,
+                        status: data.status,
+                    },
+                },
+                user: {
+                    connect: {
+                        id: data.userId,
+                    },
+                },
             },
-        });
-    }
-    async findByUsernameOrEmail(data) {
-        return await this.prisma.user.findFirst({
-            where: {
-                OR: [{ username: data.username }, { email: data.email }],
-            },
-        });
-    }
-    async save(data) {
-        return await this.prisma.user.create({
-            data,
         });
     }
 };
-exports.UserPrismaRepository = UserPrismaRepository;
-exports.UserPrismaRepository = UserPrismaRepository = __decorate([
+exports.TaskUserPrismaRepository = TaskUserPrismaRepository;
+exports.TaskUserPrismaRepository = TaskUserPrismaRepository = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], UserPrismaRepository);
-//# sourceMappingURL=user.prisma.respository.js.map
+], TaskUserPrismaRepository);
+//# sourceMappingURL=task-user.prisma.repository.js.map
