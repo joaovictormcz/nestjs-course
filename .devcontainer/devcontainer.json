@@ -6,7 +6,7 @@
 	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
 	"dockerComposeFile": [
-		"../docker.compose.yaml",
+		"../docker-compose.yaml",
 		"docker-compose.yml"
 	],
 
@@ -33,7 +33,9 @@
 				"ms-azuretools.vscode-docker",
 				"esbenp.prettier-vscode",
 				"TabNine.tabnine-vscode",
-				"ms-vscode-remote.vscode-remote-extensionpack"
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-mysql"
 			]
 		}
 	}

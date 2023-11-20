@@ -19,10 +19,12 @@ const auth_guard_provider_1 = require("../../infra/providers/auth-guard.provider
 const profile_user_usercase_1 = require("./useCases/profile-user.usercase");
 const create_user_schema_1 = require("./schemas/create-user.schema");
 const platform_express_1 = require("@nestjs/platform-express");
+const upload_avatar_user_usecase_1 = require("./useCases/upload-avatar-user.usecase");
 let UserController = class UserController {
-    constructor(createUserUseCase, profileUserUseCase) {
+    constructor(createUserUseCase, profileUserUseCase, uploadAvatarUserUseCase) {
         this.createUserUseCase = createUserUseCase;
         this.profileUserUseCase = profileUserUseCase;
+        this.uploadAvatarUserUseCase = uploadAvatarUserUseCase;
     }
     async create(data) {
         const user = await this.createUserUseCase.execute(data);
@@ -32,7 +34,7 @@ let UserController = class UserController {
         return this.profileUserUseCase.execute(req.user.sub);
     }
     async uploadAvatar(req, file) {
-        console.log(file);
+        return console.log(file);
     }
 };
 exports.UserController = UserController;
@@ -44,7 +46,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)('/profile'),
+    (0, common_1.Get)("/profile"),
     (0, common_1.UseGuards)(auth_guard_provider_1.AuthGuard),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
@@ -52,8 +54,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "profile", null);
 __decorate([
-    (0, common_1.Post)('/avatar'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
+    (0, common_1.Put)("/avatar"),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)("file")),
     (0, common_1.UseGuards)(auth_guard_provider_1.AuthGuard),
     __param(0, (0, common_1.Request)()),
     __param(1, (0, common_1.UploadedFile)()),
@@ -62,8 +64,9 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "uploadAvatar", null);
 exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)('/users'),
+    (0, common_1.Controller)("/users"),
     __metadata("design:paramtypes", [create_user_usercase_1.CreateUserUseCase,
-        profile_user_usercase_1.ProfileUserUseCase])
+        profile_user_usercase_1.ProfileUserUseCase,
+        upload_avatar_user_usecase_1.UploadAvataruserUseCase])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

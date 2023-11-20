@@ -4,7 +4,7 @@ import { SupabaseClient, createClient } from "@supabase/supabase-js";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class SupabaseStoareg implements IStorage {
+export class SupabaseStorage implements IStorage {
   private client: SupabaseClient;
   constructor() {
     this.client = createClient(

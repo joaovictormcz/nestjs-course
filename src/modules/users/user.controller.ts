@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   Request,
   UploadedFile,
   UseGuards,
@@ -16,13 +17,15 @@ import {
   CreateUserSchemaDTO,
 } from "./schemas/create-user.schema";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { FileDTO } from "./dto/user.dto";
+import { AvatarDTO, FileDTO } from "./dto/user.dto";
+import { UploadAvataruserUseCase } from "./useCases/upload-avatar-user.usecase";
 
-@Controller('/users')
+@Controller("/users")
 export class UserController {
   constructor(
     private readonly createUserUseCase: CreateUserUseCase,
-    private readonly profileUserUseCase: ProfileUserUseCase
+    private readonly profileUserUseCase: ProfileUserUseCase,
+    private readonly uploadAvatarUserUseCase: UploadAvataruserUseCase
   ) {}
 
   @Post()
@@ -32,16 +35,20 @@ export class UserController {
     return CreateUserResponseSchemaDTO.parse(user);
   }
 
-  @Get('/profile')
+  @Get("/profile")
   @UseGuards(AuthGuard)
   async profile(@Request() req) {
     return this.profileUserUseCase.execute(req.user.sub);
   }
 
-  @Post('/avatar')
-  @UseInterceptors(FileInterceptor('file'))
+  @Put("/avatar")
+  @UseInterceptors(FileInterceptor("file"))
   @UseGuards(AuthGuard)
   async uploadAvatar(@Request() req, @UploadedFile() file: FileDTO) {
-    console.log(file);
+    // const result = await this.uploadAvatarUserUseCase.execute({
+    //   file,
+    //   idUser: req.user.sub,
+    // });
+    return console.log(file);
   }
 }
