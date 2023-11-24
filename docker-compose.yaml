@@ -1,25 +1,25 @@
 version: "3"
 
 services:
-  # app:
-  #   build: .
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - .:/home/node/app
-  #   environment:
-  #     NODE_ENV: development   
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    environment:
+      NODE_ENV: development   
 
   db:
     image: mysql:8.0.30-debian
-    ports:
-      - "3307:3306"
+    # ports:
+    #   - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: task_manager
       MYSQL_PASSWORD: root
-    volumes:
-      - pcal_mysql:/var/lib/mysql
+    # volumes:
+    #   - pcal_mysql:/var/lib/mysql
 
-volumes:
-  pcal_mysql:
+# volumes:
+#   pcal_mysql:
