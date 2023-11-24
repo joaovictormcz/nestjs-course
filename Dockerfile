@@ -1,6 +1,6 @@
 FROM node:19-slim
 
-WORKDIR /home/node/app-course
+WORKDIR /home/node/app-course-nestjs
 
 # Instalação do Docker
 RUN apt-get update && \
