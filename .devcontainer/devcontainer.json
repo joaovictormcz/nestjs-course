@@ -27,7 +27,9 @@
 			"extensions": [
 				"TabNine.tabnine-vscode",
 				"ms-azuretools.vscode-docker",
-				"esbenp.prettier-vscode"
+				"esbenp.prettier-vscode",
+				"prisma.prisma",
+				"ms-vscode-remote.remote-containers"
 			]
 		}
 	}
