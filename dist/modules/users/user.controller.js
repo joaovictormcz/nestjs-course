@@ -15,11 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const create_user_usercase_1 = require("./useCases/create-user.usercase");
-const auth_guard_provider_1 = require("../../infra/providers/auth-guard.provider");
 const profile_user_usercase_1 = require("./useCases/profile-user.usercase");
 const create_user_schema_1 = require("./schemas/create-user.schema");
 const platform_express_1 = require("@nestjs/platform-express");
 const upload_avatar_user_usecase_1 = require("./useCases/upload-avatar-user.usecase");
+const auth_guard_provider_1 = require("../../infra/providers/auth-guard.provider");
 let UserController = class UserController {
     constructor(createUserUseCase, profileUserUseCase, uploadAvatarUserUseCase) {
         this.createUserUseCase = createUserUseCase;

@@ -1,6 +1,6 @@
 import { AvatarDTO } from "../dto/user.dto";
 import { IUserRepository } from "../repositories/user.repository";
-import { IStorage } from "src/infra/providers/storage/storage";
+import { IStorage } from "../../../infra/providers/storage/storage";
 export declare class UploadAvataruserUseCase {
     private storage;
     private userRepository;
