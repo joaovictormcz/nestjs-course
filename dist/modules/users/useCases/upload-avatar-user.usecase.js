@@ -13,14 +13,19 @@ exports.UploadAvataruserUseCase = void 0;
 const common_1 = require("@nestjs/common");
 const user_repository_1 = require("../repositories/user.repository");
 const storage_1 = require("../../../infra/providers/storage/storage");
+const path_1 = require("path");
 let UploadAvataruserUseCase = class UploadAvataruserUseCase {
     constructor(storage, userRepository) {
         this.storage = storage;
         this.userRepository = userRepository;
     }
     async execute(data) {
+        const extFile = (0, path_1.extname)(data.file.originalname);
+        const transformName = `${data.idUser}${extFile}`;
+        data.file.originalname = transformName;
         const file = await this.storage.upload(data.file, "avatar");
-        console.log(file);
+        const pathAvatarUser = `avatar/${data.file.originalname}`;
+        await this.userRepository.uploadAvatar(data.idUser, pathAvatarUser);
         return file;
     }
 };

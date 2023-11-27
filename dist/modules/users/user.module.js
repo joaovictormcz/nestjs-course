@@ -14,7 +14,6 @@ const prisma_service_1 = require("../../infra/prisma.service");
 const user_prisma_respository_1 = require("./repositories/prisma/user.prisma.respository");
 const user_repository_1 = require("./repositories/user.repository");
 const profile_user_usercase_1 = require("./useCases/profile-user.usercase");
-const platform_express_1 = require("@nestjs/platform-express");
 const upload_avatar_user_usecase_1 = require("./useCases/upload-avatar-user.usecase");
 const storage_1 = require("../../infra/providers/storage/storage");
 const supabase_storage_1 = require("../../infra/providers/storage/supabase.storage");
@@ -23,12 +22,7 @@ let UserModule = class UserModule {
 exports.UserModule = UserModule;
 exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            platform_express_1.MulterModule.register({
-                dest: "./uploads",
-                preservePath: true,
-            }),
-        ],
+        imports: [],
         controllers: [user_controller_1.UserController],
         providers: [
             create_user_usercase_1.CreateUserUseCase,

@@ -34,7 +34,11 @@ let UserController = class UserController {
         return this.profileUserUseCase.execute(req.user.sub);
     }
     async uploadAvatar(req, file) {
-        return console.log(file);
+        const result = await this.uploadAvatarUserUseCase.execute({
+            file,
+            idUser: req.user.sub,
+        });
+        return result;
     }
 };
 exports.UserController = UserController;

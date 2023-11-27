@@ -14,5 +14,5 @@ export declare class UserController {
         username: string;
     }>;
     profile(req: any): Promise<import("./dto/user.dto").UserCreatedDTO | null>;
-    uploadAvatar(req: any, file: FileDTO): Promise<void>;
+    uploadAvatar(req: any, file: FileDTO): Promise<any>;
 }

@@ -40,6 +40,16 @@ let UserPrismaRepository = class UserPrismaRepository {
             data,
         });
     }
+    async uploadAvatar(id, path) {
+        await this.prisma.user.update({
+            data: {
+                avatarUrl: path,
+            },
+            where: {
+                id,
+            },
+        });
+    }
 };
 exports.UserPrismaRepository = UserPrismaRepository;
 exports.UserPrismaRepository = UserPrismaRepository = __decorate([

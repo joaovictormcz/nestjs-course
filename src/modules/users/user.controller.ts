@@ -10,15 +10,16 @@ import {
   UseInterceptors,
 } from "@nestjs/common";
 import { CreateUserUseCase } from "./useCases/create-user.usercase";
-import { AuthGuard } from "src/infra/providers/auth-guard.provider";
+
 import { ProfileUserUseCase } from "./useCases/profile-user.usercase";
 import {
   CreateUserResponseSchemaDTO,
   CreateUserSchemaDTO,
 } from "./schemas/create-user.schema";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { AvatarDTO, FileDTO } from "./dto/user.dto";
+import { FileDTO } from "./dto/user.dto";
 import { UploadAvataruserUseCase } from "./useCases/upload-avatar-user.usecase";
+import { AuthGuard } from "../../infra/providers/auth-guard.provider";
 
 @Controller("/users")
 export class UserController {
@@ -45,10 +46,10 @@ export class UserController {
   @UseInterceptors(FileInterceptor("file"))
   @UseGuards(AuthGuard)
   async uploadAvatar(@Request() req, @UploadedFile() file: FileDTO) {
-    // const result = await this.uploadAvatarUserUseCase.execute({
-    //   file,
-    //   idUser: req.user.sub,
-    // });
-    return console.log(file);
+    const result = await this.uploadAvatarUserUseCase.execute({
+      file,
+      idUser: req.user.sub,
+    });
+    return result;
   }
 }
