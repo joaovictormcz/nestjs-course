@@ -25,7 +25,7 @@ export class UserPrismaRepository implements IUserRepository {
   }
 
   async findByUsernameOrEmail(
-    data: UsernameAndEmail
+    data: UsernameAndEmail,
   ): Promise<UserCreatedDTO | null> {
     return await this.prisma.user.findFirst({
       where: {

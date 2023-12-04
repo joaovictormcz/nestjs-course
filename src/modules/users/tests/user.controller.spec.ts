@@ -12,7 +12,7 @@ import { randomUUID } from "crypto";
 describe("User Controller", () => {
   let userController: UserController;
   let userRepository: IUserRepository;
-  let create
+  let create;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -25,7 +25,7 @@ describe("User Controller", () => {
         {
           provide: IUserRepository,
           useValue: {
-            findByUsernameOrEmail: jest.fn(),            
+            findByUsernameOrEmail: jest.fn(),
             save: jest.fn(),
           },
         },
@@ -49,7 +49,7 @@ describe("User Controller", () => {
       username: "username",
     };
 
-    jest.spyOn(userRepository, 'save').mockResolvedValue({
+    jest.spyOn(userRepository, "save").mockResolvedValue({
       ...body,
       id: randomUUID(),
       createdAt: new Date(),

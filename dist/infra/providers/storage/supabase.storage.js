@@ -18,7 +18,7 @@ let SupabaseStorage = class SupabaseStorage {
     }
     async upload(file, folder) {
         const data = await this.client.storage
-            .from(process.env.SUPABASE_BUCKET ?? '')
+            .from(process.env.SUPABASE_BUCKET ?? "")
             .upload(`${folder}/` + file.originalname, file.buffer, {
             upsert: true,
         });

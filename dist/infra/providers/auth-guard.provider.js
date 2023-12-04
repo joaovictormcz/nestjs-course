@@ -26,7 +26,7 @@ let AuthGuard = class AuthGuard {
             const payload = await this.jwtService.verifyAsync(token, {
                 secret: "NESTJS_CURSO",
             });
-            request['user'] = payload;
+            request["user"] = payload;
         }
         catch {
             throw new common_1.UnauthorizedException();

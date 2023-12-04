@@ -6,16 +6,14 @@ import { TaskUserPrismaRepository } from "./repositories/prisma/task-user.prisma
 import { ITaskUserRepository } from "./repositories/task-user.repository";
 
 @Module({
-    controllers: [TaskUserController],
-    providers: [
-        PrismaService,
-        CreateTaskUserUseCase,
-        {
-            provide: ITaskUserRepository,
-            useClass: TaskUserPrismaRepository,
-        }
-    ]
+  controllers: [TaskUserController],
+  providers: [
+    PrismaService,
+    CreateTaskUserUseCase,
+    {
+      provide: ITaskUserRepository,
+      useClass: TaskUserPrismaRepository,
+    },
+  ],
 })
-export class TaskUserModule {
-
-}
+export class TaskUserModule {}

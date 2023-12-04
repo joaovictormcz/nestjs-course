@@ -25,8 +25,8 @@ exports.TaskUserModule = TaskUserModule = __decorate([
             {
                 provide: task_user_repository_1.ITaskUserRepository,
                 useClass: task_user_prisma_repository_1.TaskUserPrismaRepository,
-            }
-        ]
+            },
+        ],
     })
 ], TaskUserModule);
 //# sourceMappingURL=task-user.module.js.map

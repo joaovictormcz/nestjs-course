@@ -9,16 +9,15 @@ export class SupabaseStorage implements IStorage {
   constructor() {
     this.client = createClient(
       process.env.SUPABASE_URL ?? "",
-      process.env.SUPABASE_KEY ?? ""
+      process.env.SUPABASE_KEY ?? "",
     );
   }
 
   async upload(file: FileDTO, folder: string): Promise<any> {
     const data = await this.client.storage
-      .from(process.env.SUPABASE_BUCKET ?? '')
+      .from(process.env.SUPABASE_BUCKET ?? "")
       .upload(`${folder}/` + file.originalname, file.buffer, {
         upsert: true,
       });
   }
 }
- 

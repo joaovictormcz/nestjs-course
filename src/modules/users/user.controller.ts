@@ -26,7 +26,7 @@ export class UserController {
   constructor(
     private readonly createUserUseCase: CreateUserUseCase,
     private readonly profileUserUseCase: ProfileUserUseCase,
-    private readonly uploadAvatarUserUseCase: UploadAvataruserUseCase
+    private readonly uploadAvatarUserUseCase: UploadAvataruserUseCase,
   ) {}
 
   @Post()

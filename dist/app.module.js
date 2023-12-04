@@ -20,10 +20,12 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [user_module_1.UserModule, login_module_1.LoginModule, task_user_module_1.TaskUserModule],
         controllers: [],
-        providers: [{
+        providers: [
+            {
                 provide: core_1.APP_PIPE,
                 useClass: nestjs_zod_1.ZodValidationPipe,
-            }],
+            },
+        ],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

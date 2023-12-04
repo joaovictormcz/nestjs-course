@@ -8,7 +8,7 @@ import { SignInDTO } from "../dto/sign-in.dto";
 export class SignInUseCase {
   constructor(
     private jwtService: JwtService,
-    private prisma: PrismaService
+    private prisma: PrismaService,
   ) {}
 
   async execute(data: SignInDTO) {

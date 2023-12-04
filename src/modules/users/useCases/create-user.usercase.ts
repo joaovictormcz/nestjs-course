@@ -14,7 +14,7 @@ export class CreateUserUseCase {
     });
 
     if (user) {
-      this.logger.error('User ${data.username} already exists...', data);
+      this.logger.error("User ${data.username} already exists...", data);
       throw new HttpException("User already exists!", HttpStatus.BAD_REQUEST);
     }
 

@@ -8,12 +8,12 @@ import { extname } from "path";
 export class UploadAvataruserUseCase {
   constructor(
     private storage: IStorage,
-    private userRepository: IUserRepository
+    private userRepository: IUserRepository,
   ) {}
 
   async execute(data: AvatarDTO) {
     const extFile = extname(data.file.originalname);
-    
+
     const transformName = `${data.idUser}${extFile}`;
 
     data.file.originalname = transformName;

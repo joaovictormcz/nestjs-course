@@ -5,9 +5,9 @@ import {
 } from "../dto/user.dto";
 
 export abstract class IUserRepository {
-  abstract findById(id: string): Promise<UserCreatedDTO | null>;  
+  abstract findById(id: string): Promise<UserCreatedDTO | null>;
   abstract findByUsernameOrEmail(
-    data: UsernameAndEmail
+    data: UsernameAndEmail,
   ): Promise<UserCreatedDTO | null>;
   abstract save(data: CreateUserDTO): Promise<UserCreatedDTO>;
   abstract uploadAvatar(id: string, path: string): Promise<void>;

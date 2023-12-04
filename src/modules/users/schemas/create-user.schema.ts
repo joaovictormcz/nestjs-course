@@ -23,4 +23,3 @@ export const CreateUserResponseSchemaDTO = CreateUserSchema.omit({
 export type CreateUserResponseSchemaDTO = z.infer<
   typeof CreateUserResponseSchemaDTO
 >;
- 

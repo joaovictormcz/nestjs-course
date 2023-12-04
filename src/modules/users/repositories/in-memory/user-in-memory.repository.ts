@@ -14,10 +14,10 @@ export class UserInMemoryRepository implements IUserRepository {
   }
 
   async findByUsernameOrEmail(
-    data: UsernameAndEmail
+    data: UsernameAndEmail,
   ): Promise<UserCreatedDTO | null> {
     const findUser = this.users.find(
-      (user) => user.username === data.username || user.email === data.email
+      (user) => user.username === data.username || user.email === data.email,
     );
     return findUser ?? null;
   }

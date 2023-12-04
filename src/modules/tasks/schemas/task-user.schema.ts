@@ -11,5 +11,5 @@ export const CreateTaskUserSchema = z.object({
 });
 
 export class CreateTaskUserSchemaDTO extends createZodDto(
-  CreateTaskUserSchema
+  CreateTaskUserSchema,
 ) {}

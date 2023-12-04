@@ -9,7 +9,7 @@ export class TaskUserController {
 
   @UseGuards(AuthGuard)
   @Post("/")
-  async create(@Body() data: CreateTaskUserSchemaDTO, @Request() req) {            
+  async create(@Body() data: CreateTaskUserSchemaDTO, @Request() req) {
     return this.taskUserUseCase.execute({
       ...data,
       userId: req.user.sub,

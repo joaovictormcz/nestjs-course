@@ -25,7 +25,7 @@ let CreateUserUseCase = CreateUserUseCase_1 = class CreateUserUseCase {
             email: data.email,
         });
         if (user) {
-            this.logger.error('User ${data.username} already exists...', data);
+            this.logger.error("User ${data.username} already exists...", data);
             throw new common_1.HttpException("User already exists!", common_1.HttpStatus.BAD_REQUEST);
         }
         const password = await (0, bcrypt_1.hash)(data.password, 10);

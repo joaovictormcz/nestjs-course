@@ -9,7 +9,7 @@ import { CreateUserDTO } from "../dto/user.dto";
 export class CreateUserValidationPipe implements PipeTransform {
   transform(
     { name, email, username, password }: CreateUserDTO,
-    metadata: ArgumentMetadata
+    metadata: ArgumentMetadata,
   ) {
     if (!name || !email || !username || !password) {
       throw new HttpException(
